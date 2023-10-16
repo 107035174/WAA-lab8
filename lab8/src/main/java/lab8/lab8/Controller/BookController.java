@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
+// import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,14 +37,14 @@ public class BookController {
     }
 
     @PostMapping("/")
-    @PreAuthorize("hasAuthority(\"ADMIN\")")
+    // @PreAuthorize("hasAuthority(\"ADMIN\")")
     public ResponseEntity<Book> create(@RequestParam String title, @RequestParam String author) {
         Book book = new Book(title, author);
         return new ResponseEntity<Book>(book, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority(\"ADMIN\")")
+    // @PreAuthorize("hasAuthority(\"ADMIN\")")
     public ResponseEntity<Book> update(@PathVariable long id, @RequestParam String title, @RequestParam String author) {
         if (bookRepository.existsById(id)) {
             Book book = new Book(title, author);
@@ -56,7 +56,7 @@ public class BookController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority(\"ADMIN\")")
+    // @PreAuthorize("hasAuthority(\"ADMIN\")")
     public ResponseEntity<String> delete(@PathVariable long id) {
         if (bookRepository.existsById(id)) {
 

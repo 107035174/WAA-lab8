@@ -11,7 +11,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
 public class Jwt {
-    private String SECRET_KEY = "MySecretKey";
+    private String SECRET_KEY = "MySecretKeyMySecretKeyMySecretKey";
     private SecretKey secretKey = new SecretKeySpec(SECRET_KEY.getBytes(), "HmacSHA256");
 
     public String generateToken(String username, String role) {

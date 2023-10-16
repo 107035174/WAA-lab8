@@ -16,7 +16,7 @@ import lab8.lab8.model.Role;
 
 public class AuthenticationFilter extends OncePerRequestFilter {
 
-    private final Jwt jwtUtil;
+    private  Jwt jwtUtil;
 
     public AuthenticationFilter(Jwt jwtUtil) {
         this.jwtUtil = jwtUtil;
@@ -28,7 +28,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
         try {
             final String header = request.getHeader("Authorization");
 
-            if (header == null || !header.startsWith("Beearer ")) {
+            if (header == null || !header.startsWith("Bearer ")) {
                 filterchain.doFilter(request, responce);
                 return;
             }

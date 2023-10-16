@@ -18,7 +18,7 @@ import lab8.lab8.Util.Jwt;
 @EnableWebSecurity
 public class SecurityConfig {
     private UserDetailsService userDetailsService;
-    private Jwt jwtUtil;
+    private Jwt jwtUtil = new Jwt();
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -31,7 +31,7 @@ public class SecurityConfig {
         return http.csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests((matcher) -> matcher.requestMatchers("/register").permitAll()
                         .requestMatchers(HttpMethod.GET, "/book/**").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/book/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/book/").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/book/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/book/**").hasRole("ADMIN"))
                 .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
